@@ -1,12 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://r5bfpyyytneh"]
+[gd_scene load_steps=7 format=3 uid="uid://r5bfpyyytneh"]
 
 [ext_resource type="Script" uid="uid://dn2p0800biopp" path="res://boid.gd" id="1_uvgqj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d5du7"]
 rough = true
 
+[sub_resource type="BoxMesh" id="BoxMesh_uvgqj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5du7"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_puw62"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_30i2v"]
+
 [node name="Drone" type="Node3D"]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00198436, 0.00243306, -0.00352204)
 physics_material_override = SubResource("PhysicsMaterial_d5du7")
 script = ExtResource("1_uvgqj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(0.995453, 0, -0.0952551, 0, 1, 0, 0.0952551, 0, 0.995453, 0.097345, 0.0479109, 0.0748343)
+mesh = SubResource("BoxMesh_uvgqj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00753808, -0.0213878, -0.0248029)
+shape = SubResource("BoxShape3D_d5du7")
+
+[node name="boid" type="RigidBody3D" parent="."]
+script = ExtResource("1_uvgqj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="boid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.275617, 0.685057, -1.151)
+mesh = SubResource("PrismMesh_puw62")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="boid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.871649, 0.197326, 0.114843)
+shape = SubResource("ConvexPolygonShape3D_30i2v")
