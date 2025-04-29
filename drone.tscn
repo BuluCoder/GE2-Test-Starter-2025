@@ -59,4 +59,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78827, -1.41357, 0)
 script = ExtResource("3_30i2v")
 boid_player = NodePath("../../../RigidBody3D")
 boid = NodePath("../../../boid")
+mode = 1
 metadata/_custom_type_script = "uid://b5kvvo3doc0og"
