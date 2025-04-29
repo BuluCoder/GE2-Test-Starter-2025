@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://r5bfpyyytneh"]
+[gd_scene load_steps=10 format=3 uid="uid://r5bfpyyytneh"]
 
 [ext_resource type="Script" uid="uid://dn2p0800biopp" path="res://boid.gd" id="1_uvgqj"]
+[ext_resource type="Script" uid="uid://ygiyui27gqnw" path="res://fp_controller.gd" id="2_puw62"]
+[ext_resource type="Script" uid="uid://b5kvvo3doc0og" path="res://CameraController.gd" id="3_30i2v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d5du7"]
 rough = true
@@ -12,6 +14,8 @@ rough = true
 [sub_resource type="PrismMesh" id="PrismMesh_puw62"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_30i2v"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_uvgqj"]
 
 [node name="Drone" type="Node3D"]
 
@@ -38,3 +42,21 @@ mesh = SubResource("PrismMesh_puw62")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="boid"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.871649, 0.197326, 0.114843)
 shape = SubResource("ConvexPolygonShape3D_30i2v")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36501, 0.158602, -1.19209e-07)
+script = ExtResource("2_puw62")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35091, -0.233334, 0)
+transparency = 1.0
+mesh = SubResource("SphereMesh_uvgqj")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78827, -1.41357, 0)
+
+[node name="CameraController" type="Node" parent="CharacterBody3D/Camera3D" node_paths=PackedStringArray("boid_player", "boid")]
+script = ExtResource("3_30i2v")
+boid_player = NodePath("../../../RigidBody3D")
+boid = NodePath("../../../boid")
+metadata/_custom_type_script = "uid://b5kvvo3doc0og"
