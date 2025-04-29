@@ -46,6 +46,9 @@ shape = SubResource("ConvexPolygonShape3D_30i2v")
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36501, 0.158602, -1.19209e-07)
 script = ExtResource("2_puw62")
+sensitivity = null
+speed = null
+can_move = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35091, -0.233334, 0)
